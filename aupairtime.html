@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contagem Regressiva ✈️🌍</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #4a148c;
+    }
+
+    .timer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .timer {
+      font-size: 1.2em;
+      background: #fff3e0;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .timer-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #6a1b9a;
+    }
+
+    .countdown {
+      font-size: 1.1em;
+      color: #424242;
+    }
+  </style>
+</head>
+<body>
+  <h1>Viagem dos Sonhos 🌎✨</h1>
+  <div class="timer-container">
+    <div class="timer">
+      <div class="timer-title">Data Limite Extensão</div>
+      <div class="countdown" id="extensao"></div>
+    </div>
+    <div class="timer">
+      <div class="timer-title">1 Ano de Intercâmbio</div>
+      <div class="countdown" id="ano1"></div>
+    </div>
+    <div class="timer">
+      <div class="timer-title">2 Anos de Intercâmbio</div>
+      <div class="countdown" id="ano2"></div>
+    </div>
+    <div class="timer">
+      <div class="timer-title">Grace Period</div>
+      <div class="countdown" id="grace"></div>
+    </div>
+  </div>
+
+  <script>
+    function atualizarContador(id, dataAlvo) {
+      const agora = new Date();
+      const alvo = new Date(dataAlvo);
+      const diff = alvo - agora;
+
+      if (diff <= 0) {
+        document.getElementById(id).innerText = "Já chegou! ✨";
+        return;
+      }
+
+      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((diff / 1000 / 60) % 60);
+      const segundos = Math.floor((diff / 1000) % 60);
+
+      document.getElementById(id).innerText = 
+        `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    function iniciarContadores() {
+      setInterval(() => {
+        atualizarContador("extensao", "2025-09-08T00:00:00");
+        atualizarContador("ano1", "2025-10-21T00:00:00");
+        atualizarContador("ano2", "2026-10-21T00:00:00");
+        atualizarContador("grace", "2026-11-21T00:00:00");
+      }, 1000);
+    }
+
+    iniciarContadores();
+  </script>
+</body>
+</html>
